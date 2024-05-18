@@ -52,6 +52,7 @@ const App = () => {
     getConnections.filter(el => el.to.type === 'output').map(el => {
       const outp = el.to
       outp.solve()
+      alert('Solved!')
     })
   }
 
