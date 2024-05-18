@@ -1,5 +1,5 @@
 const BaseSVG = ({ elements, getConnections, getNewConnections, getScale, createNewConnection, getMousePosition}) =>
-    <svg viewBox={`0 0 ${window.innerWidth} ${window.innerHeight}`} preserveAspectRatio="xMidYMid meet" onContextMenu={(e) => e.preventDefault()}>
+    <svg className="main" viewBox={`0 0 ${window.innerWidth} ${window.innerHeight}`} preserveAspectRatio="xMidYMid meet" onContextMenu={(e) => e.preventDefault()}>
         {elements.map((el) => (
             <g key={el.type + el.index + el.name} >
                 <rect x={el.x} y={el.y} width={el.width * getScale} height={el.height * getScale} fill="lightblue" stroke="black" onMouseDown={e => moveElement(e, el)} />

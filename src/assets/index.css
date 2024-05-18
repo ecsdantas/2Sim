@@ -1,25 +1,22 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 html, body {
-  background-color: rgb(31, 31, 31);
   color: rgb(230, 230, 230);
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
 }
 
 svg {
+  background-color: rgb(31, 31, 31);
   top:0;
   left: 0;
+  z-index: 0;
   display: block;
   position: absolute;
+}
+
+svg.main {
   width: 100vw;
   height: 100vh;
-  
 }
 
 .fixed-bottom-center {
@@ -64,4 +61,40 @@ svg {
   text-align: center;
   border-radius: 5px;
   z-index: 100;
+}
+
+.bar {
+  width: 300px;
+  background-color: rgb(2, 2, 2);
+  height: 100vh;
+  z-index: 100;
+  position: absolute;
+  color: rgb(88, 217, 48);
+  overflow: hidden;
+  transition: transform 0.5s ease-in-out;
+  padding: 8px;
+}
+
+.left-bar {
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.right-bar {
+  right: 0;
+  transform: translateX(100%);
+}
+
+.left-bar.show, .right-bar.show {
+  transform: translateX(0);
+}
+
+.block-lists {
+  display: flex;
+  width: 100%;
+  margin: 10px 0;
+  border-radius: 6px;
+  height: calc(100vh - 120px);
+  overflow-x: hidden;
+  overflow-y: auto;
 }

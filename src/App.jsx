@@ -5,6 +5,8 @@ import GearBtn from './assets/icons/gear.svg'
 import { inputPort, gain, add, outputPort } from './components/blocks'
 import { Tooltip } from './components/tooltip';
 import BaseSVG from './components/baseSVG';
+import LateralBar from './components/barraLateral';
+import { BlockLists } from './components/blockLists'
 
 const App = () => {
   const [elements, setElements] = useState([inputPort, gain, outputPort, add]);
@@ -12,11 +14,10 @@ const App = () => {
   const [getNewConnections, setNewConnections] = useState(null);
   const [getMousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [getDragElement, setDragElement] = useState(null)
+  const [getLeftBarShow, setLeftBarShow] = useState(0)
+  const [getRightBarShow, setRightBarShow] = useState(0)
 
   const getScale = 2
-
-  window.getConnections = getConnections
-  window.getNewConnections = getNewConnections
 
   useEffect(() => {
     setNewConnections(null)
@@ -56,19 +57,29 @@ const App = () => {
 
   return (
     <div>
+      <LateralBar show={ getLeftBarShow } className={ 'left-bar' }>
+        <BlockLists />
+      </LateralBar>
+      <LateralBar show={ getRightBarShow } className={ 'right-bar' }>Teste 1</LateralBar>
       <div className="fixed-bottom-center">
-        <Tooltip text="Allow to add new blocks">
-          <button onClick={() => { }}><img src={LibraryBtn} width={30} /></button>
+        <Tooltip text="Library">
+          <button onClick={() => { setLeftBarShow(e => !e) }}><img src={LibraryBtn} width={30} /></button>
         </Tooltip>
-        <Tooltip text="Run the simulation">
+        <Tooltip text="Run simulation">
           <button onClick={() => solve()}><img src={PlayBtn} width={30} /></button>
         </Tooltip>
-        <Tooltip text="Open the preferences">
-          <button onClick={() => { }}><img src={GearBtn} width={30} /></button>
+        <Tooltip text="Preferences">
+          <button onClick={() => { setRightBarShow(e => !e) }}><img src={GearBtn} width={30} /></button>
         </Tooltip>
       </div>
       <div className="App" onMouseMove={updateMousePos}>
-        <BaseSVG elements={elements} getConnections={getConnections} getNewConnections={getNewConnections} getScale={getScale} createNewConnection={createNewConnection} getMousePosition={getMousePosition} />
+        <BaseSVG
+          elements={elements}
+          getConnections={getConnections}
+          getNewConnections={getNewConnections}
+          getScale={getScale}
+          createNewConnection={createNewConnection}
+          getMousePosition={getMousePosition} />
       </div>
     </div>
   );
